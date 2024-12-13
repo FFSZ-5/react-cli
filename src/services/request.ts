@@ -8,19 +8,20 @@
 
 import axios from "axios";
 import config from "./config.ts";
+import qs from "qs";
 
 const Axios = axios.create(config);
 
 // POST 传参序列化
 Axios.interceptors.request.use(
   (config) => {
-    if (localStorage.stamp) {
-      config.headers.Stamp = localStorage.stamp;
+    if (localStorage.token) {
+      config.headers.Authorization = `Bearer ${localStorage.token}`;
     }
     if (config.headers["Content-Type"] == "multipart/form-data") {
       return config;
     }
-    if (config.method === "post") config.data = JSON.stringify(config.data);
+    if (config.method === "post") config.data = qs.stringify(config.data);
     return config;
   },
   (error) => {

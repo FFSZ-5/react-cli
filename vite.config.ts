@@ -26,7 +26,7 @@ export default defineConfig(({ mode }) => {
             res.setHeader("x-req-proxyURL", proxyURL); // 将真实请求地址设置到响应头中
           },
           rewrite: (path: string) => {
-            return path.replace(/\/api/, "");
+            return path;
           },
           secure: false,
         },
