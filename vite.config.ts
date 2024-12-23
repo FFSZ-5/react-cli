@@ -36,7 +36,7 @@ export default defineConfig(({ mode }) => {
       postcss: {
         plugins: [
           postCssPxToRem({
-            rootValue: 192,
+            rootValue: 192.19,
             propList: ["*"],
           }),
         ],

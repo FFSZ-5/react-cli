@@ -1,4 +1,5 @@
 import "./index.scss";
+import "amfe-flexible";
 
 import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";

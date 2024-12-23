@@ -1,23 +1,17 @@
-import { useDispatch, useSelector } from "react-redux";
-
-import { login } from "../services";
-import { update } from "../store/action/userInfo";
-import { useEffect } from "react";
+import { setVisible } from "../store/action/modal";
+import { useDispatch } from "react-redux";
 
 export interface AddCategoryModalProps {}
 const Demo = () => {
-  const userInfo = useSelector((state: any) => state.userInfo);
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(update({ name: 444 }));
-    console.log("lfsz", 444444);
-  }, []);
-  console.log("lfsz", 2223);
   const clickHandle = async () => {
-    const data = await login.post({ a: 1, b: 2 });
-    console.log("lfsz", data);
+    dispatch(setVisible({ type: "loginModal", value: true }));
   };
-  return <div onClick={clickHandle}>{userInfo?.name}</div>;
+  return (
+    <>
+      <div onClick={clickHandle}>登录</div>
+    </>
+  );
 };
 
 export default Demo;
