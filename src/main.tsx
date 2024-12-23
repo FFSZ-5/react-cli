@@ -1,4 +1,4 @@
-import "./index.scss";
+import "./style/index.scss";
 import "amfe-flexible";
 
 import { Provider } from "react-redux";
