@@ -1,6 +1,6 @@
-import { Button, Form, Input, Modal } from "antd";
+import { Button, Form, Input, Modal, message } from "antd";
 import { EmailPass, PasswordPass } from "../../utils/validate";
-import { Login, register } from "../../services";
+import { GetUserInfo, Login, Logout, Register } from "../../services";
 import { useDispatch, useSelector } from "react-redux";
 
 import { encrypt } from "../../utils/encrypt";
@@ -9,6 +9,7 @@ import { useState } from "react";
 
 const LoginModal = () => {
   const [isLogin, setIsLogin] = useState<boolean>(true);
+  const [messageApi, contextHolder] = message.useMessage();
   const [form] = Form.useForm();
   const { loginModal } = useSelector((state: any) => state.modal);
   const { pubKey } = useSelector((state: any) => state.userInfo);
@@ -56,9 +57,25 @@ const LoginModal = () => {
     form.validateFields().then(async (res) => {
       const { email, password } = res;
       const data = await encrypt(password, pubKey);
-      const result = await register({ email, password: data });
-      console.log("lfsz", result);
+      const result = await Register({ email, password: data });
+      if (result.success) {
+        messageApi.open({
+          type: "success",
+          content: "This is a prompt message with custom className and style",
+          className: "custom-class",
+          style: {
+            marginTop: "20vh",
+          },
+        });
+      }
     });
+  };
+  const getInfoHandle = async () => {
+    const data = await GetUserInfo();
+    console.log("lfsz", data);
+  };
+  const logoutHandle = async () => {
+    Logout();
   };
   return (
     <Modal
@@ -67,6 +84,7 @@ const LoginModal = () => {
       onCancel={closeHandle}
       footer={null}
     >
+      {contextHolder}
       <Form form={form} name={isLogin ? "login" : "register"}>
         <Form.Item
           name='email'
@@ -94,6 +112,8 @@ const LoginModal = () => {
       </Form>
       <Button onClick={clickHandle}>{isLogin ? "登录" : "账密登录"}</Button>
       <Button onClick={registerHandle}>{isLogin ? "前往注册" : "注册"}</Button>
+      <Button onClick={getInfoHandle}>获取</Button>
+      <Button onClick={logoutHandle}>登出</Button>
     </Modal>
   );
 };

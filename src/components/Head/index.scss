@@ -1,4 +1,39 @@
+@use "@/style/index.scss";
 .blog-head {
   height: 64px;
-  background: red;
+  background: var(--head-bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--head-border-bottom);
+  .right {
+    .ant-avatar {
+      border: 1px solid var(--head-avatar);
+      cursor: pointer;
+    }
+  }
+}
+.ant-drawer-content-wrapper {
+  width: 320px !important;
+}
+.ant-drawer-mask {
+  background: var(--drawer-mask) !important;
+}
+.avatar-drawer {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  background: var(--body-bg) !important;
+  border-left: 1px solid var(--head-border-bottom);
+
+  .ant-drawer-body {
+    padding: 16px;
+    .drawer-list {
+      cursor: pointer;
+      color: var(--font-color);
+      font-size: var(--font-size);
+      font-weight: var(--font-weight);
+    }
+  }
 }

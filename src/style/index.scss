@@ -5,4 +5,19 @@ body,
   margin: 0;
   height: 100%;
   width: 100%;
+  background: var(--body-bg);
+  .icon {
+    height: 1em;
+    width: 1em;
+  }
+}
+html[data-theme="default"] {
+  --font-color: rgba(255, 255, 255);
+  --font-size: 14px;
+  --font-weight: 400;
+  --head-bg: #010409;
+  --head-avatar: #fff;
+  --head-border-bottom: #b7bdc8;
+  --body-bg: #010409;
+  --drawer-mask: #d1d7e066;
 }
