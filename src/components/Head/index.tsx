@@ -8,8 +8,6 @@ import { UserOutlined } from "@ant-design/icons";
 import { setVisible } from "@/store/action/modal";
 import { useState } from "react";
 
-// import SvgIcon from "@/components/SvgIcon";
-
 const Head = () => {
   const [showDrawer, setShowDrawer] = useState<boolean>(false);
   const userInfo = useSelector((state: any) => state.userInfo);
